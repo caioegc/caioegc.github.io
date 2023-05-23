@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<style>
+</style>
+
+<head>
+
+    <H1 class="value"> Desenvolva uma página no seu servidor com formulário/HTML e/ou inputs
+        do JS (prompt/confirm), para criar as seguintes funções com JavaScript:
+        1) Faça uma função MAIOR_MENOR(a, b, c, d, e) que leia cinco valores inteiros e
+        imprima o maior e o menor valor. <br>
+        2) Criar uma função VOGAL(c) que receba um caractere como parâmetro e retorne 1
+        (um) caso seja uma vogal e zero caso não seja. <br>
+        3) Criar uma função LIMITES(li, ls) que leia os limites inferior e superior de um intervalo
+        e imprimir todos os números pares no intervalo aberto e seu somatório. Suponha
+        que os dados digitados são para um intervalo crescente. <br>
+        4) Faça uma função ORDEM(a, b, c) que recebe 3 valores inteiros por parâmetro e
+        retorna-os ordenados em ordem crescente. <br>
+        5) Faça uma função POSITIVO_NEGATIVO(x) que recebe um valor inteiro e verifica se o
+        valor é positivo ou negativo. A função deve retornar um valor booleano. <br>
+        6) Faça uma função PAR_IMPAR(x) que recebe um valor inteiro e verifica se o valor é
+        par ou ímpar. A função deve retornar um valor booleano. <br> </H1>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trabalho do Mauricio, feito por caio</title>
+  <script>
+    function MAIOR_MENOR() {
+      
+      var a = parseInt(document.getElementById('valor-a').value);
+      var b = parseInt(document.getElementById('valor-b').value);
+      var c = parseInt(document.getElementById('valor-c').value);
+      var d = parseInt(document.getElementById('valor-d').value);
+      var e = parseInt(document.getElementById('valor-e').value);
+
+      
+      var maior = Math.max(a, b, c, d, e);
+      var menor = Math.min(a, b, c, d, e);
+
+      
+      document.getElementById('resultado').innerHTML = "Maior valor: " + maior + "<br>Menor valor: " + menor;
+    }
+  </script>
+</head>
+<body>
+  <h2><B>PRIMEIRA QUESTÃO </B>Encontre o Maior e o Menor Valor</h2>
+
+  <form>
+    <label for="valor-a">primeiro valor:</label>
+    <input type="number" id="valor-a" required><br>
+
+    <label for="valor-b">segundo valor:</label>
+    <input type="number" id="valor-b" required><br>
+
+    <label for="valor-c">terceiro valor:</label>
+    <input type="number" id="valor-c" required><br>
+
+    <label for="valor-d">quarto valor:</label>
+    <input type="number" id="valor-d" required><br>
+
+    <label for="valor-e">quinto valor:</label>
+    <input type="number" id="valor-e" required><br>
+
+    <button type="button" onclick="MAIOR_MENOR()">Encontrar Maior/Menor</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <br>
+
+  <script>
+    function VOGAL(c) {
+      
+      c = c.toLowerCase();
+
+      
+      if (c === 'a' || c === 'e' || c === 'i' || c === 'o' || c === 'u') {
+        return 1; 
+      } else {
+        return 0; 
+      }
+    }
+
+    function verificarVogal() {
+      var caractere = prompt("Digite UM caractere:");
+
+      if (caractere.length !== 1) {
+        alert("Digite apenas um caractere, irmão, é dificil?!");
+      } else {
+        var resultado = VOGAL(caractere);
+
+        if (resultado === 1) {
+          alert("O caractere que tu digitou é uma vogal!");
+        } else {
+          alert("O caractere que tu digitou não é uma vogal!"); 
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>SEGUNDA QUESTÃO Verificar se o Caractere digitado é uma Vogal</h2>
+
+  <button type="button" onclick="verificarVogal()">Verificar</button>
+
+  <br> 
+  <!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+    function LIMITES(li, ls) {
+      
+      var somatorio = 0;
+
+      
+      for (var i = li + 1; i < ls; i++) {
+        if (i % 2 === 0) {
+          console.log(i); 
+          somatorio += i; 
+        }
+      }
+
+      return somatorio;
+    }
+
+    function imprimirNumerosPares() {
+      var limiteInferior = parseInt(prompt("Digite o limite inferior que tu quer:"));
+      var limiteSuperior = parseInt(prompt("Digite o limite superior que tu quer:"));
+
+      if (isNaN(limiteInferior) || isNaN(limiteSuperior)) {
+        alert("Digite valores numéricos válidos, irmãao!"); 
+      } else if (limiteInferior >= limiteSuperior) {
+        alert("O limite inferior deve ser menor que o limite superior, irmão, é dificil?!"); 
+      } else {
+        var somatorio = LIMITES(limiteInferior, limiteSuperior);
+        console.log("Somatório: " + somatorio); 
+        alert("Somatório: " + somatorio); 
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2> TERCEIRA QUESTÃO Imprimir Números e Calcular o Somatório Dos Numeros Pares entre os Numeros Solicitados</h1>
+
+  <button type="button" onclick="imprimirNumerosPares()">Imprimir Números Pares</button>
+
+  <br> 
+  <!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+    function ORDEM(a, b, c) {
+      var valores = [a, b, c];
+
+      
+      var trocou;
+      do {
+        trocou = false;
+        for (var i = 0; i < valores.length - 1; i++) {
+          if (valores[i] > valores[i + 1]) {
+            var temp = valores[i];
+            valores[i] = valores[i + 1];
+            valores[i + 1] = temp;
+            trocou = true;
+          }
+        }
+      } while (trocou);
+
+      return valores;
+    }
+
+    function ordenarValores() {
+      var valor1 = parseInt(prompt("Digite o primeiro valor desejado:"));
+      var valor2 = parseInt(prompt("Digite o segundo valor desejado:"));
+      var valor3 = parseInt(prompt("Digite o terceiro valor desejado:"));
+
+      if (isNaN(valor1) || isNaN(valor2) || isNaN(valor3)) {
+        alert("Digite valores numéricos válidos, cara!");
+      } else {
+        var valoresOrdenados = ORDEM(valor1, valor2, valor3);
+        alert("Valores Ordenados que tu botou: " + valoresOrdenados.join(", ")); 
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>QUARTA QUESTÃO: Ordenar Valores em Ordem Crescente</h2>
+
+  <button type="button" onclick="ordenarValores()">Ordenar Valores</button>
+
+  <BR>
+   
+
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>
+
+<script>
+    function POSITIVO_NEGATIVO(x) {
+      return x >= 0; 
+    }
+
+    function verificarValor() {
+      var valor = parseInt(prompt("Digite um valor inteiro:"));
+
+      if (isNaN(valor)) {
+        alert("Digite um valor numérico válido!"); 
+      } else {
+        var resultado = POSITIVO_NEGATIVO(valor);
+        var mensagem = resultado ? "O valor é positivo" : "O valor é negativo.";
+        alert(mensagem);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2> QUINTA QUESTÃO: Verificar se um Valor é Positivo ou Negativo</h2>
+
+  <button type="button" onclick="verificarValor()">Verificar Valor</button> <br>
+ 
+</html>
+</body>
+
+</body>
+</html>
+
+
+<html>
+<head>
+  
+  <script>
+    function PAR_IMPAR(x) {
+      return x % 2 === 0; 
+    }
+
+    function verificarValor() {
+      var valor = parseInt(prompt("Digite um valor inteiro:"));
+
+      if (isNaN(valor)) {
+        alert("Digite um valor numérico válido, irmão!");
+      } else {
+        var resultado = PAR_IMPAR(valor);
+        var mensagem = resultado ? "O valor é par." : "O valor é ímpar.";
+        alert(mensagem);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>SEXTA QUESTÃO: Verificar se um Valor é Par ou Ímpar</h2>
+
+  <button type="button" onclick="verificarValor()">Escolha o numero par ou impar</button>
+</body>
+</html>
+
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+
+
+
+    
